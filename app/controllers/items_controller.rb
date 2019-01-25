@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @Item = Item.all()
+    @items = Item.all()
   end
 
   def create
