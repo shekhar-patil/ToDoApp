@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Items = ['Mango', 'Pineapple', 'Passion fruit', 'Dragonfruit']
+Items.each{|item| Item.create(name: item, mark: false)}
+
