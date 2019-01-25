@@ -1,4 +1,5 @@
 import React from 'react';
+import Item from './Item';
 
 class ItemsList extends React.Component {
 
@@ -16,18 +17,15 @@ class ItemsList extends React.Component {
   }
 
   render(){
-
-    var items = this.state.items.map((item) => {
-      return(
-        <div key={item.id}>
-          <h1>{item.name}</h1>
-        </div>
-      )
-    });
+    const { items } = this.state;
 
     return(
       <div>
-        {items}
+        {items.map((item) => {
+          return (
+            <Item item={item} key={item.id} />
+          )
+        })}
       </div>
     )
   }
