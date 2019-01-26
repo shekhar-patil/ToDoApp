@@ -1,12 +1,12 @@
 import React from 'react';
-import ItemsList from './ItemsList'
+import ItemsList from './ItemsList';
 
 const Main = (props) => {
   return(
-    <div>
+    <center>
       <h1>Item list!</h1>
       <ItemsList />
-    </div>
+    </center>
   )
 }
 

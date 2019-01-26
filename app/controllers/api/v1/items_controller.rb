@@ -22,7 +22,7 @@ class Api::V1::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).parmit(:id, :name , :mark)
+    params.require(:item).permit(:id, :name , :mark)
   end
 
 end
