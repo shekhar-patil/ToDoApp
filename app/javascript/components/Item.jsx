@@ -1,14 +1,23 @@
 import React from 'react';
 
-const Item = (props) => {
+class Item extends React.Component {
 
-  return(
-    <div className='w-100'>
-      <span className='badge m-2'>{props.item.name}</span>
-      <button className='btn btn-primary' onClick={() => props.handleDelete(props.item.id)}>Delete</button>
-    </div>
-  )
-};
-
-export default Item;
+  constructor(props){
+    super(props);
+    this.state = {
+      editable: false
+    }
+  }
   
+  render() { 
+    return(
+      <div className='w-100'>
+        <span className='badge m-2'>{this.props.item.name}</span>
+        <button className='btn btn-primary'>{this.state.editable? 'Submit' : 'Edit'}</button>
+        <button className='btn btn-danger' onClick={() => this.props.handleDelete(this.props.item.id)}>Delete</button>
+      </div>
+    )
+  }
+}
+ 
+export default Item;
