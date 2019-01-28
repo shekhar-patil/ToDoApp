@@ -12,6 +12,8 @@ class ItemsList extends React.Component {
     this.handleFormSubmit = this.handleFormSubmit.bind(this)
     this.addNewItem = this.addNewItem.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
+    this.updateItem = this.updateItem.bind(this)
   }
 
   handleFormSubmit(name){
@@ -26,11 +28,9 @@ class ItemsList extends React.Component {
     .then((item)=>{
       this.addNewItem(item)
     })
-    console.log("sjdfb")
   }
 
   handleDelete(id){
-    
     fetch(`http://localhost:3000/api/v1/items/${id}`, 
     {
       method: 'DELETE',
@@ -40,6 +40,26 @@ class ItemsList extends React.Component {
     }).then((response) => { 
       this.deleteItem(id)
       })
+  }
+
+  handleUpdate(item){
+    fetch(`http://localhost:3000/api/v1/items/${item.id}`, 
+    {
+      method: 'PUT',
+      body: JSON.stringify({item: item}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => { 
+        this.updateItem(item)
+      })
+  }
+  updateItem(item){
+    let newItems = this.state.items.filter((I) => I.id !== item.id)
+    newItems.push(item)
+    this.setState({
+      items: newItems
+    })
   }
   
   deleteItem(id){
@@ -74,6 +94,7 @@ class ItemsList extends React.Component {
               item={item} 
               key={item.id}
               handleDelete={this.handleDelete} 
+              handleUpdate = {this.handleUpdate}
             />
           )
         })}
