@@ -32,35 +32,44 @@ class Item extends React.Component {
   }
   
   render() { 
-    let name = this.state.editable ? <input 
+    let name = this.state.editable ? <h3><input 
       
-      className="form-control m-2"
       type='text' 
-      style ={{width: '40%'}}
       ref={input => this.name = input} 
       defaultValue={this.props.item.name}
-    /> : <h3></h3>
+    /></h3> : <h3>{this.props.item.name}</h3>
     return(
-      <div className='w-100'>
-        <br></br>
-        {name}
-        <input type="checkbox" checked={this.props.item.mark} onClick={() => this.handleMark(!this.props.item.mark)}></input>
-        &nbsp;&nbsp;&nbsp;
-        <span className='badge m-2'>{this.props.item.name}</span>
-        &nbsp;&nbsp;&nbsp;
-        <button 
-          className='btn btn-primary' 
-          onClick={() => this.handleEdit()}>
-          {this.state.editable? 'Submit' : 'Edit'}
-        </button>
-        &nbsp;&nbsp;&nbsp;
-        <button 
-          className='btn btn-danger' 
-          onClick={() => this.props.handleDelete(this.props.item.id)}
-          >Delete
-        </button>
-        <br></br>
-      </div>
+      <tr>
+          <th style={{width: "20%"}}>
+            <center>
+              <input type="checkbox" checked={this.props.item.mark} onClick={() => this.handleMark(!this.props.item.mark)}></input>
+            </center>
+          </th>
+          
+          <th style={{width: "40%"}}>
+          <center>{name}</center>
+          </th>
+
+          <th style={{width: "20%"}}>
+          <center>
+          <button 
+            className='btn btn-primary' 
+            onClick={() => this.handleEdit()}>
+            {this.state.editable? 'Submit' : 'Edit'}
+          </button>
+          </center>
+          </th>
+          <th style={{width: "20%"}}>
+          <center>
+          <button 
+            className='btn btn-danger' 
+            onClick={() => this.props.handleDelete(this.props.item.id)}
+            >Delete
+          </button>
+          </center>
+          </th>
+
+        </tr>
     )
   }
 }

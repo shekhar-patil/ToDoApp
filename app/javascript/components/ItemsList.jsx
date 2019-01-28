@@ -101,19 +101,32 @@ class ItemsList extends React.Component {
         <NewItem
           handleFormSubmit={this.handleFormSubmit}
         />
+        <table class="table" style={{width: '70%'}} >
+        <thead>
+          <tr className="table-primary">
+            <th scope="col"><center><h2>Task Status</h2></center></th>
+            <th scope="col"><center><h2>Task Name</h2></center></th>
+            <th scope="col"><center><h2>Edit</h2></center></th>
+            <th scope="col"><center><h2>Delete</h2></center></th>
+          </tr>
+        </thead>
         {items.map((item) => {
           return (
-            <Item 
-              item={item} 
-              key={item.id}
-              handleDelete={this.handleDelete} 
-              handleUpdate = {this.handleUpdate}
-            />
+            <tbody>
+              <Item 
+                item={item} 
+                key={item.id}
+                handleDelete={this.handleDelete} 
+                handleUpdate = {this.handleUpdate}
+              />
+            </tbody>
           )
         })}
+        </table>
       </div>
     )
   }
 }
 
 export default ItemsList;
+
