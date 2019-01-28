@@ -14,6 +14,7 @@ class ItemsList extends React.Component {
     this.handleDelete = this.handleDelete.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
     this.updateItem = this.updateItem.bind(this)
+    this.getIndex = this.getIndex.bind(this)
   }
 
   handleFormSubmit(name){
@@ -54,11 +55,23 @@ class ItemsList extends React.Component {
         this.updateItem(item)
       })
   }
+
+  getIndex(value, items ) {
+    for(let i = 0; i < items.length; i++) {
+        if(items[i]['id'] === value) {
+            return i;
+        }
+    }
+    return -1;
+  }
+
   updateItem(item){
-    let newItems = this.state.items.filter((I) => I.id !== item.id)
-    newItems.push(item)
+
+    const Items = [...this.state.items]
+    const Index = this.getIndex(item.id , this.state.items)
+    Items[Index] = {...item}
     this.setState({
-      items: newItems
+      items: Items
     })
   }
   
