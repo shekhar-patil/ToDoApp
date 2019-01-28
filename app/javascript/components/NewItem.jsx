@@ -4,13 +4,16 @@ const NewItem = (props) => {
   let formFields = {}
  
   return(
-    <form onSubmit={ (e) => { 
-      props.handleFormSubmit(formFields.name.value) ; 
-      e.target.reset();
+    <form className="form-inline" 
+      onSubmit={ (e) => { 
+        props.handleFormSubmit(formFields.name.value) ; 
+        e.target.reset();
       }}>
-      
-      <input ref={input => formFields.name = input} placeholder='Enter the name of the item'/>
-      <button>Submit</button>
+      <div className="form-group ml-2">
+        <input className="form-control m-2"  ref={input => formFields.name = input} placeholder='Enter the name of the item'/>
+      </div> 
+      &nbsp;&nbsp;&nbsp;
+      <button className='btn btn-primary mb-2'>Add Item</button>
     </form>
   )
 }
