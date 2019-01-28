@@ -4,6 +4,7 @@ const NewItem = (props) => {
   let formFields = {}
  
   return(
+    <div>
     <form className="form-inline" 
       onSubmit={ (e) => { 
         props.handleFormSubmit(formFields.name.value) ; 
@@ -15,6 +16,9 @@ const NewItem = (props) => {
       &nbsp;&nbsp;&nbsp;
       <button className='btn btn-primary mb-2'>Add Item</button>
     </form>
+    <br></br>
+    <br></br>
+    </div>
   )
 }
 
