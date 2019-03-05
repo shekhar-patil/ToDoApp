@@ -7,11 +7,9 @@ class Item extends React.Component {
     this.state = {
       editable: false
     }
-    this.handleEdit = this.handleEdit.bind(this)
-    this.handleMark = this.handleMark.bind(this)
   }
 
-  handleMark(markBooleanValue){
+  handleMark = (markBooleanValue) => {
     const name = this.props.item.name
     const id = this.props.item.id
     const mark = markBooleanValue
@@ -19,7 +17,7 @@ class Item extends React.Component {
     this.props.handleUpdate(item)
   }
 
-  handleEdit(){
+  handleEdit = () => {
     if(this.state.editable){
       let name = this.name.value
       let id = this.props.item.id
@@ -33,7 +31,6 @@ class Item extends React.Component {
   
   render() { 
     let name = this.state.editable ? <h3><input 
-      
       type='text' 
       ref={input => this.name = input} 
       defaultValue={this.props.item.name}

@@ -1,7 +1,7 @@
 class Api::V1::ItemsController < ApplicationController
   
   def index
-    render json: Item.all
+    @items = Item.all
   end
 
   def create
@@ -16,7 +16,6 @@ class Api::V1::ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     item.update_attributes(item_params)
-    render json: item
   end
 
   private
@@ -26,4 +25,3 @@ class Api::V1::ItemsController < ApplicationController
   end
 
 end
-

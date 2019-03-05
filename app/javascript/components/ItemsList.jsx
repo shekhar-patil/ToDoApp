@@ -9,15 +9,9 @@ class ItemsList extends React.Component {
     this.state = {
       items: []
     };
-    this.handleFormSubmit = this.handleFormSubmit.bind(this)
-    this.addNewItem = this.addNewItem.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
-    this.handleUpdate = this.handleUpdate.bind(this)
-    this.updateItem = this.updateItem.bind(this)
-    this.getIndex = this.getIndex.bind(this)
   }
 
-  handleFormSubmit(name){
+  handleFormSubmit = (name) => {
     let newItem = JSON.stringify({item : {name : name , mark : false}});
     fetch('http://localhost:3000/api/v1/items' , {
       method : 'POST',
@@ -25,13 +19,14 @@ class ItemsList extends React.Component {
         'Content-Type' : 'application/json'
       },
       body : newItem
-    }).then((response) => {return response.json()})
-    .then((item)=>{
-      this.addNewItem(item)
     })
+      .then((response) => {return response.json()})
+      .then((item)=>{
+        this.addNewItem(item)
+      })
   }
 
-  handleDelete(id){
+  handleDelete = (id) => {
     fetch(`http://localhost:3000/api/v1/items/${id}`, 
     {
       method: 'DELETE',
@@ -43,7 +38,8 @@ class ItemsList extends React.Component {
       })
   }
 
-  handleUpdate(item){
+  handleUpdate = (item) => {
+    console.log(item);
     fetch(`http://localhost:3000/api/v1/items/${item.id}`, 
     {
       method: 'PUT',
@@ -56,7 +52,7 @@ class ItemsList extends React.Component {
       })
   }
 
-  getIndex(value, items ) {
+  getIndex = (value, items ) => {
     for(let i = 0; i < items.length; i++) {
         if(items[i]['id'] === value) {
             return i;
@@ -65,7 +61,7 @@ class ItemsList extends React.Component {
     return -1;
   }
 
-  updateItem(item){
+  updateItem = (item) => {
 
     const Items = [...this.state.items]
     const Index = this.getIndex(item.id , this.state.items)
@@ -75,22 +71,22 @@ class ItemsList extends React.Component {
     })
   }
   
-  deleteItem(id){
+  deleteItem = (id) => {
     const newItems = this.state.items.filter( (item) => item.id !== id);
     this.setState({
       items: newItems
     })
   }
   
-  addNewItem(item){
+  addNewItem = (item) => {
     this.setState({
       items: this.state.items.concat(item)
     })
   }
-  componentDidMount(){
+  componentDidMount = () => {
     fetch('/api/v1/items.json')
       .then((response) => {return response.json()})
-      .then((data) => {this.setState({ items: data }) });
+      .then((data) => {this.setState({ items: data.items }) });
   }
 
   render(){
@@ -101,7 +97,7 @@ class ItemsList extends React.Component {
         <NewItem
           handleFormSubmit={this.handleFormSubmit}
         />
-        <table class="table" style={{width: '70%'}} >
+        <table className="table" style={{width: '70%'}} >
         <thead>
           <tr className="table-primary">
             <th scope="col"><center><h2>Task Status</h2></center></th>
@@ -114,8 +110,8 @@ class ItemsList extends React.Component {
           return (
             <tbody>
               <Item 
-                item={item} 
                 key={item.id}
+                item={item} 
                 handleDelete={this.handleDelete} 
                 handleUpdate = {this.handleUpdate}
               />
@@ -129,4 +125,3 @@ class ItemsList extends React.Component {
 }
 
 export default ItemsList;
-

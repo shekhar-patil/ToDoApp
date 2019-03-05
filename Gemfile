@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'webpacker'
 gem 'jquery-rails'
+gem 'devise'
 gem 'react-rails'
 gem 'rack-cors', require: 'rack/cors'
 gem 'bootsnap', '>= 1.1.0', require: false

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   get 'items/index'
   get 'items/create'
   get 'items/destroy'
