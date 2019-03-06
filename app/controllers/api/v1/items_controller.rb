@@ -1,5 +1,5 @@
 class Api::V1::ItemsController < ApplicationController
-  
+  skip_before_action :verify_authenticity_token
   def index
     @items = Item.all
   end
@@ -16,6 +16,7 @@ class Api::V1::ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     item.update_attributes(item_params)
+    render json: item
   end
 
   private

@@ -13,7 +13,7 @@ class ItemsList extends React.Component {
 
   handleFormSubmit = (name) => {
     let newItem = JSON.stringify({item : {name : name , mark : false}});
-    fetch('http://localhost:3000/api/v1/items' , {
+    fetch('http://0.0.0.0:3000/api/v1/items' , {
       method : 'POST',
       headers :{
         'Content-Type' : 'application/json'
@@ -27,7 +27,7 @@ class ItemsList extends React.Component {
   }
 
   handleDelete = (id) => {
-    fetch(`http://localhost:3000/api/v1/items/${id}`, 
+    fetch(`http://0.0.0.0:3000/api/v1/items/${id}`, 
     {
       method: 'DELETE',
       headers: {
@@ -40,7 +40,7 @@ class ItemsList extends React.Component {
 
   handleUpdate = (item) => {
     console.log(item);
-    fetch(`http://localhost:3000/api/v1/items/${item.id}`, 
+    fetch(`http://0.0.0.0:3000/api/v1/items/${item.id}`, 
     {
       method: 'PUT',
       body: JSON.stringify({item: item}),

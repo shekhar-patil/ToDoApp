@@ -1,11 +1,12 @@
 import React from 'react';
-import ItemsList from './ItemsList';
+import ItemsList from './item/ItemsList';
+import Signup from './authentication/signup';
 
 const Main = (props) => {
   return(
     <center>
       <h1>Item list!</h1>
-      <ItemsList />
+      <Signup />
     </center>
   )
 }
