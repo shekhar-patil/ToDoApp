@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import ItemsList from '../item/ItemsList';
 
 class Signup extends React.Component {
   
